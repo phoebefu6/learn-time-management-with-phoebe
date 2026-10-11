@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 3 of 6. One person with a list is a queue. Why waiting grows slowly and then explodes as a week fills up, why an 80 percent week and a 90 percent week are not ten points apart, where to put a buffer, what Parkinson's law really was, and how to compute your own real load.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Slack is not waste - learn time management with phoebe">
+<meta property="og:description" content="Session 3 of 6. Utilisation, the queueing curve, one shared buffer, and your real load computed from your own week.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/courses/03-slack-is-not-waste.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Slack is not waste - learn time management with phoebe">
+<meta name="twitter:description" content="Session 3 of 6. From 80 to 90 percent busy, the wait more than doubles. Find your real load.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 3 · Slack is not waste - learn time management with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=15">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-time-management-with-phoebe</a> / Session 3 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Time Management with Phoebe · Session 3 of 6</div>
+    <h1>Slack is not <span class="accent">waste</span></h1>
+    <p class="sub">Dara's corrected list from session 2 is about 49 hours against about 40 focus hours. The tempting answer is to book every hour and work faster. Tonight we look at what a fully booked week does to everything waiting in it: one person with a list behaves like a queue, and a queue that runs near full makes work wait far longer than the busy share suggests. Then we place the buffer where the overruns land, read what Parkinson's law actually was, and compute your own real load.</p>
+    <div class="chip-row">
+      <span class="chip level">🟡 Core</span>
+      <span class="chip audience">Anyone whose calendar is full</span>
+      <span class="chip audience">Your list and your overrun ratio from session 2</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:5">3-18 · Utilisation, the curve, buffers</span>
+      <span class="a3" style="flex:7">18-40 · Build-along: find your real load</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Dara, our constructed new analyst, has about 6 focus hours a day. Recurring reports take 2 of them, which leaves about 4 hours a day, roughly 20 a week, for everything on the list. Session 2 showed that Dara's tasks usually run about 1.2 times their estimate. So a week that looks 70 percent full on Monday is not 70 percent full by Friday. Tonight is about the gap between the week you plan and the week you actually run, and why the empty-looking hours are doing a job.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = write it yourself</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A working definition of utilisation for one person; the queueing curve read at source, with the four values worth remembering (1, 4, 9 and 19 task-lengths of waiting at 50, 80, 90 and 95 percent busy); a buffer design that puts slack where the variance is instead of on every task; an honest reading of Parkinson's law; and your own real load for next week, computed from your focus hours, your estimates, your overrun ratio and your interruptions.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers utilisation and waiting</span>
+      <h2>A full week is a queue</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Operations researchers have a model for a single counter that serves one customer at a time while others line up. It fits a knowledge worker surprisingly well. Requests arrive when they arrive, not on a schedule. You serve one at a time. While you are busy, new work does not disappear; it waits. The quiet hours are when the line gets worked down, and if there are no quiet hours, the line only grows.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Requests arrive unevenly on a timeline: two in a quiet stretch, then four in a bunch. They enter a waiting line holding four tasks, then go to Dara, who serves one task at a time. Below, a step chart of tasks waiting across the week: near zero while arrivals are quiet, climbing to five when they bunch, then draining one task at a time.">
+        <defs>
+          <filter id="s3aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7A3B69" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s3aAr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1C26" stroke-width="1.6"/></marker>
+        </defs>
+        <style>
+          .s3aH { font: 800 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3aL { font: 600 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3aS { font: 400 11px Inter, sans-serif; fill: #6B5A66; }
+          .s3aB { font: 800 11px Inter, sans-serif; fill: #1D5446; }
+          .s3aA { font: 700 11px Inter, sans-serif; fill: #7A3B69; }
+          .s3aN { font: 400 12px Inter, sans-serif; fill: #6B5A66; }
+        </style>
+
+        <text class="s3aH" x="30" y="26">ONE PERSON IS A QUEUE: ARRIVE, WAIT, GET SERVED</text>
+
+        <g filter="url(#s3aSk)" fill="none" stroke="#2A1C26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M40 126 L240 126"/>
+          <rect x="48" y="96" width="12" height="22" rx="2" transform="rotate(-3 54 107)" fill="#FFFFFF"/>
+          <rect x="96" y="96" width="12" height="22" rx="2" transform="rotate(2 102 107)" fill="#FFFFFF"/>
+          <rect x="150" y="96" width="12" height="22" rx="2" transform="rotate(-2 156 107)" fill="#FFFFFF"/>
+          <rect x="166" y="96" width="12" height="22" rx="2" transform="rotate(3 172 107)" fill="#FFFFFF"/>
+          <rect x="182" y="96" width="12" height="22" rx="2" transform="rotate(-1 188 107)" fill="#FFFFFF"/>
+          <rect x="198" y="96" width="12" height="22" rx="2" transform="rotate(2 204 107)" fill="#FFFFFF"/>
+          <path d="M252 107 L290 107" marker-end="url(#s3aAr)"/>
+          <rect x="300" y="82" width="260" height="52" rx="8" transform="rotate(-0.4 430 108)" fill="#F8EEF4"/>
+          <rect x="314" y="90" width="26" height="36" rx="3" transform="rotate(-2 327 108)" fill="url(#s3aHc)"/>
+          <rect x="346" y="90" width="26" height="36" rx="3" transform="rotate(1.5 359 108)" fill="url(#s3aHc)"/>
+          <rect x="378" y="90" width="26" height="36" rx="3" transform="rotate(-1 391 108)" fill="url(#s3aHc)"/>
+          <rect x="410" y="90" width="26" height="36" rx="3" transform="rotate(2 423 108)" fill="url(#s3aHc)"/>
+          <path d="M566 108 L600 108" marker-end="url(#s3aAr)"/>
+          <rect x="610" y="70" width="170" height="76" rx="10" transform="rotate(0.5 695 108)" fill="#E3F3EE" stroke="#2A7362"/>
+          <rect x="672" y="104" width="46" height="24" rx="3" fill="#FFFFFF"/>
+          <path d="M664 134 L726 134"/>
+          <path d="M786 108 L830 108" marker-end="url(#s3aAr)"/>
+          <path d="M80 210 L80 300 L800 300"/>
+          <path d="M80 300 L200 300 L200 284 L260 284 L260 300 L340 300 L340 284 L380 284 L380 268 L420 268 L420 252 L460 252 L460 236 L500 236 L500 220 L560 220 L560 236 L620 236 L620 252 L680 252 L680 268 L740 268 L740 284 L800 284" stroke="#7A3B69"/>
+          <path d="M340 284 L380 284 L380 268 L420 268 L420 252 L460 252 L460 236 L500 236 L500 220 L560 220" stroke="#2A7362" stroke-width="3"/>
+        </g>
+
+        <text class="s3aL" x="40" y="76">requests arrive unevenly</text>
+        <text class="s3aS" x="78" y="144" text-anchor="middle">quiet</text>
+        <text class="s3aS" x="180" y="144" text-anchor="middle">a bunch</text>
+        <text class="s3aL" x="310" y="72">the waiting line</text>
+        <text class="s3aS" x="448" y="112">4 waiting</text>
+        <text class="s3aS" x="300" y="154">new work waits while Dara is busy</text>
+        <text class="s3aB" x="695" y="92" text-anchor="middle">Dara, one task at a time</text>
+        <text class="s3aS" x="695" y="166" text-anchor="middle">first come, first served</text>
+        <text class="s3aL" x="808" y="98" text-anchor="middle">done</text>
+
+        <text class="s3aA" x="66" y="300" transform="rotate(-90 66 300)">TASKS WAITING</text>
+        <text class="s3aB" x="300" y="206">a bunch arrives: the line grows</text>
+        <text class="s3aS" x="570" y="226">drains slowly, one task at a time</text>
+        <text class="s3aS" x="800" y="318" text-anchor="end">time across one week</text>
+
+        <text class="s3aN" x="30" y="340">Constructed picture of Dara's week: the shape of a queue, not measured counts.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the mint stretch is the bunch; the line climbs in a morning and takes the rest of the week to drain</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Utilisation for one person<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Utilisation is the share of your available focus time that is spent busy on work. For one person: busy focus time divided by focus time available. If Dara has 20 focus hours a week for the list and spends 16 of them working on it, utilisation is 80 percent. The other 4 hours are not idle in any useful sense of the word; they are the gaps in which a bunch of arrivals gets worked down.</p>
+        <p>Two things make this number slippery. First, it is about the hours you actually spent, not the hours you planned: a plan at 70 percent can run at 100 once estimates overrun. Second, it says nothing about how long work waits. Two weeks can both be 80 percent busy, and in one the requests trickled in evenly while in the other they arrived in clumps. The second week makes work wait much longer. Part 2 puts numbers on that.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Little's law: the line, the rate and the wait<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>One relation ties the length of a queue to how long things wait in it. Little's law, read in the MIT OpenCourseWare 2.854 M/M/1 note, is L = lambda W: the average number of items in the system (L) equals the rate at which they arrive (lambda) times the average time each spends there (W). It holds on average over a long run, whatever the pattern of arrivals or task lengths, which is why it is so useful on a messy desk.</p>
+        <p>Turn it round and it gives you a wait you can estimate from two counts you already have. Constructed arithmetic: if about 10 tasks sit on your list on a typical day, and you finish about 2.5 a day (in a steady week that is also the rate they arrive), the average task spends about 10 / 2.5 = 4 days on your list. Nobody needs to time anything. If the stakeholder's expectation is two days, the list is twice as long as it can be, whatever the estimates say. The same note gives the exact wait for the simplest random queue, Wq = lambda / (mu(mu - lambda)), where mu is the rate you can finish work; Part 2 turns that into a curve.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>"It only takes ten minutes, why is it still not done?"</strong> A familiar complaint on data teams: a stakeholder asks for a quick table change, it would take ten minutes, and it ships four days later. Nobody was slow. The analyst spent every hour of those four days on other work, all of it also waiting. The ten minutes was the service time. The four days was the queue, and the queue is set by how full the analyst's week is, not by the size of the request.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers the queueing curve</span>
+      <h2>Waiting grows slowly, then explodes</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">For the simplest random queue, one server with arrivals and task lengths both random in the standard way, the average wait before service starts, measured in task-lengths, is rho / (1 - rho), where rho is utilisation. At half busy you wait about one task-length. At 80 percent you wait four. At 95 percent you wait nineteen. The curve is flat for a long time and then turns almost vertical, and most full calendars live on the steep part.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 374" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Curve of average wait in task-lengths against utilisation from 0 to 100 percent, following rho over one minus rho. Marked points: 50 percent busy gives a wait of 1 task-length, 80 percent gives 4, 90 percent gives 9, 95 percent gives 19. The stretch from 80 to 90 percent is drawn in mint: the wait more than doubles. A dashed line at 100 percent: no ceiling.">
+        <defs>
+          <filter id="s3bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .s3bH { font: 800 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3bL { font: 600 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3bS { font: 400 11px Inter, sans-serif; fill: #6B5A66; }
+          .s3bB { font: 800 11px Inter, sans-serif; fill: #1D5446; }
+          .s3bA { font: 700 11px Inter, sans-serif; fill: #7A3B69; }
+          .s3bN { font: 400 12px Inter, sans-serif; fill: #6B5A66; }
+        </style>
+
+        <text class="s3bH" x="30" y="26">WAIT BEFORE SERVICE, IN TASK-LENGTHS = RHO / (1 - RHO)</text>
+
+        <g filter="url(#s3bSk)" fill="none" stroke="#2A1C26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M80 60 L80 300 L780 300"/>
+          <path d="M74 60 L80 60 M74 120 L80 120 M74 180 L80 180 M74 240 L80 240"/>
+          <path d="M255 300 L255 306 M430 300 L430 306 M605 300 L605 306 M780 300 L780 306"/>
+          <path d="M80 300 L220 297 L360 292 L430 288 L500 282 L570 272 L605 264 L640 252 L675 232 L710 192 L724 162 L731 140 L738 112 L745 72 L748 52" stroke="#7A3B69" stroke-width="2.4"/>
+          <path d="M640 252 L657 243 L675 232 L692 216 L710 192" stroke="#2A7362" stroke-width="4"/>
+          <path d="M780 50 L780 300" stroke="#6B5A66" stroke-dasharray="6 5"/>
+          <circle cx="430" cy="288" r="5" fill="#FFFFFF"/>
+          <circle cx="640" cy="252" r="5" fill="#2A7362" stroke="#1D5446"/>
+          <circle cx="710" cy="192" r="5" fill="#2A7362" stroke="#1D5446"/>
+          <circle cx="745" cy="72" r="5" fill="#FFFFFF"/>
+          <path d="M814 232 L846 232 L814 270 L846 270 Z" fill="#F8EEF4"/>
+        </g>
+
+        <text class="s3bS" x="70" y="304" text-anchor="end">0</text>
+        <text class="s3bS" x="70" y="244" text-anchor="end">5</text>
+        <text class="s3bS" x="70" y="184" text-anchor="end">10</text>
+        <text class="s3bS" x="70" y="124" text-anchor="end">15</text>
+        <text class="s3bS" x="70" y="64" text-anchor="end">20</text>
+        <text class="s3bA" x="40" y="300" transform="rotate(-90 40 300)">WAIT, IN TASK-LENGTHS</text>
+
+        <text class="s3bS" x="80" y="322" text-anchor="middle">0%</text>
+        <text class="s3bS" x="255" y="322" text-anchor="middle">25%</text>
+        <text class="s3bS" x="430" y="322" text-anchor="middle">50%</text>
+        <text class="s3bS" x="605" y="322" text-anchor="middle">75%</text>
+        <text class="s3bS" x="780" y="322" text-anchor="middle">100%</text>
+        <text class="s3bA" x="780" y="340" text-anchor="end">HOW BUSY (UTILISATION)</text>
+
+        <text class="s3bL" x="416" y="270" text-anchor="end">50% busy: 1</text>
+        <text class="s3bL" x="626" y="236" text-anchor="end">80% busy: 4</text>
+        <text class="s3bL" x="696" y="186" text-anchor="end">90% busy: 9</text>
+        <text class="s3bL" x="731" y="70" text-anchor="end">95% busy: 19</text>
+        <text class="s3bB" x="120" y="100">From 80% to 90% busy, the wait more than doubles: 4 to 9</text>
+        <text class="s3bS" x="788" y="160">100%:</text>
+        <text class="s3bS" x="788" y="176">no ceiling</text>
+
+        <text class="s3bN" x="30" y="362">One-server random queue. 1, 4 and 19 are the Technion slide's worked values; 9 is computed from the formula.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the mint stretch is ten points of busyness that more than doubles every wait on the list</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>From 80 to 90 percent, the wait more than doubles<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Read the curve in pairs. From 50 to 80 percent busy, utilisation rises by 30 points and the wait goes from 1 task-length to 4. From 80 to 90 percent, it rises by only 10 points and the wait goes from 4 to 9, more than double. From 90 to 95, five more points take it from 9 to 19. Each step toward full costs more waiting than the last, and at 100 percent there is no ceiling at all: a desk that is always busy never catches up on a bunch.</p>
+        <p>In hours: if Dara's typical task is about two hours, an 80 percent week means a new request waits about eight hours before Dara even starts it, roughly two working days of list time. Push the week to 90 percent and the same request waits about eighteen. Nothing about Dara's speed changed. The values 1, 4 and 19 are the worked values printed on Mandelbaum's Technion slide; 9 comes from the same formula, rho / (1 - rho) = 0.9 / 0.1. Use 9: the slide's own figure at 90 percent does not match its formula.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Kingman's approximation: variability makes it worse<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Real work is rarely the tidy random queue. Mandelbaum's Technion lecture notes, "The G/G/1 Queue", give the general approximation for one server with any arrival pattern and any spread of task lengths: average wait is about E(S) x rho / (1 - rho) x (C2(A) + C2(S)) / 2. E(S) is the average task length. C2(A) and C2(S) are the squared coefficients of variation of the gaps between arrivals and of the task lengths: how uneven each one is, relative to its average. The notes label the formula "Exact for M/G/1", an "Upper bound in general" and "Asymptotically exact as rho -> 1", and credit the heavy-traffic result to Kingman (1961). The 1961 paper itself was not read for this page; the formula is as printed in the notes.</p>
+        <p>The variability term is the part that matters for a working week. With both C2 values at 1 it collapses to the curve above. Anything that makes task lengths more uneven raises C2(S), and overruns do exactly that: a list where most tasks land on estimate but one in five runs to 1.5 times or 2 times has a wider spread of true lengths than its estimates suggest. Wider spread, longer wait, at the same utilisation. Clumped arrivals do the same through C2(A). Session 4 checks the bench against Kingman: agreement within 0.4 hours up to 91.3 percent load.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The team that was always "nearly caught up".</strong> A reporting team proudly runs at near full capacity: every analyst booked, no idle afternoons. Their turnaround on routine requests drifts from two days to a week over a quarter, and the team lead hires a contractor to "add capacity". The contractor adds only a little capacity, a day or so a week. Turnaround improves by far more than that little extra would suggest. That is the curve read from the other side: taking a desk from the steep part back to the flat part buys a lot of waiting back for a little capacity.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers buffers and Parkinson's law</span>
+      <h2>Put the buffer where the variance is</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">If slack is what absorbs overruns and bunches, the question is where to put it. The habit most people reach for is padding every estimate a little. The alternative is one shared block of unbooked time that whichever task runs long can use. Same hours, very different behaviour. And the objection everyone raises, "work expands to fill the time", turns out to come from a piece of satire, which is worth knowing before you let it decide your plan.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 316" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two panels. Before: four tasks, each with its own small pad; three pads sit idle and task C still runs past its pad. After: the same four tasks with no pads, and one shared mint slack block at the end; task C's overrun flows into the shared block. Same total hours.">
+        <defs>
+          <filter id="s3cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="57" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7A3B69" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s3cAr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1C26" stroke-width="1.6"/></marker>
+        </defs>
+        <style>
+          .s3cH { font: 800 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3cL { font: 600 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3cS { font: 400 11px Inter, sans-serif; fill: #6B5A66; }
+          .s3cB { font: 800 11px Inter, sans-serif; fill: #1D5446; }
+          .s3cN { font: 400 12px Inter, sans-serif; fill: #6B5A66; }
+        </style>
+
+        <text class="s3cH" x="30" y="26">SAME HOURS, TWO PLACEMENTS: PAD EVERY TASK, OR SHARE ONE BLOCK</text>
+
+        <g filter="url(#s3cSk)" fill="none" stroke="#2A1C26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="50" width="400" height="226" rx="10" transform="rotate(-0.4 230 163)" fill="#FFFFFF"/>
+          <rect x="450" y="50" width="400" height="226" rx="10" transform="rotate(0.4 650 163)" fill="#FFFFFF"/>
+          <circle cx="404" cy="76" r="12" fill="#F8EEF4"/>
+          <path d="M404 76 L404 68 M404 76 L410 79"/>
+
+          <rect x="50" y="96" width="140" height="26" rx="4" fill="#F8EEF4"/>
+          <rect x="192" y="96" width="40" height="26" rx="4" fill="url(#s3cHc)" stroke="#6B5A66" stroke-width="1.2"/>
+          <rect x="50" y="136" width="100" height="26" rx="4" fill="#F8EEF4"/>
+          <rect x="152" y="136" width="30" height="26" rx="4" fill="url(#s3cHc)" stroke="#6B5A66" stroke-width="1.2"/>
+          <rect x="50" y="176" width="160" height="26" rx="4" fill="#F8EEF4"/>
+          <rect x="212" y="176" width="40" height="26" rx="4" fill="url(#s3cHc)" stroke="#6B5A66" stroke-width="1.2"/>
+          <rect x="254" y="176" width="40" height="26" rx="4" fill="#FEF2F2" stroke="#991B1B"/>
+          <rect x="50" y="216" width="80" height="26" rx="4" fill="#F8EEF4"/>
+          <rect x="132" y="216" width="20" height="26" rx="4" fill="url(#s3cHc)" stroke="#6B5A66" stroke-width="1.2"/>
+
+          <rect x="470" y="96" width="140" height="26" rx="4" fill="#F8EEF4"/>
+          <rect x="470" y="136" width="100" height="26" rx="4" fill="#F8EEF4"/>
+          <rect x="470" y="176" width="160" height="26" rx="4" fill="#F8EEF4"/>
+          <rect x="632" y="176" width="40" height="26" rx="4" fill="url(#s3cHc)" stroke="#6B5A66" stroke-width="1.2"/>
+          <rect x="470" y="216" width="80" height="26" rx="4" fill="#F8EEF4"/>
+          <path d="M676 189 L694 189" marker-end="url(#s3cAr)"/>
+          <rect x="700" y="96" width="130" height="146" rx="8" transform="rotate(0.6 765 169)" fill="#E3F3EE" stroke="#2A7362"/>
+        </g>
+
+        <text class="s3cH" x="46" y="76">BEFORE: PAD EVERY TASK</text>
+        <text class="s3cL" x="60" y="114">task A</text>
+        <text class="s3cS" x="242" y="113">pad sat idle</text>
+        <text class="s3cL" x="60" y="154">task B</text>
+        <text class="s3cS" x="192" y="153">pad sat idle</text>
+        <text class="s3cL" x="60" y="194">task C</text>
+        <text class="s3cS" x="304" y="193">ran past its pad</text>
+        <text class="s3cL" x="60" y="234">task D</text>
+        <text class="s3cS" x="162" y="233">pad sat idle</text>
+        <text class="s3cS" x="46" y="264">3 pads sat idle, and task C was still late</text>
+
+        <text class="s3cH" x="466" y="76">AFTER: ONE SHARED SLACK BLOCK</text>
+        <text class="s3cL" x="480" y="114">task A</text>
+        <text class="s3cL" x="480" y="154">task B</text>
+        <text class="s3cL" x="480" y="194">task C</text>
+        <text class="s3cL" x="480" y="234">task D</text>
+        <text class="s3cB" x="765" y="150" text-anchor="middle">shared slack</text>
+        <text class="s3cB" x="765" y="168" text-anchor="middle">absorbs whichever</text>
+        <text class="s3cB" x="765" y="186" text-anchor="middle">task overruns</text>
+        <text class="s3cS" x="466" y="264">same hours; the slack sits where the overrun lands</text>
+
+        <text class="s3cN" x="30" y="302">Planning practice, not a cited finding: the totals match, only the placement differs.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the mint block is the same hours as the four pads, pooled where the overrun actually lands</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>One shared buffer beats padding every task<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Padding each task spreads your slack evenly across the list, but overruns are not even. Session 2's ratios showed most of Dara's tasks landing near estimate and a few running long. Per-task padding gives every task a small cushion, most of which goes unused, and still leaves the one task that runs badly without enough. Pool the same hours into one unbooked block, late in the week or late in the day, and it can absorb whichever task overruns, however far.</p>
+        <p>This is planning practice, not a finding from a study read for this page; treat it as a design to test on your own week. The reasoning is the queueing one from Part 2: a shared block keeps your booked hours on the flat part of the curve while leaving room for the spread. Two habits make it work. Name the block on your calendar so it does not get given away, and when it goes unused, spend it on the important-not-urgent item, Dara's quarterly churn analysis, rather than on new asks.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What Parkinson's law actually was<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>"Work expands so as to fill the time available for its completion." The line opens C. Northcote Parkinson's essay in The Economist of 19 November 1955, as reported; the original page could not be fetched for this page. The essay was satire about civil-service headcount: officials multiply subordinates and create work for one another, regardless of how much real work there is. It was not a study of individual people, their schedules or their slack.</p>
+        <p>So here is the disagreement to hold. Many people quote the line as proof that unbooked time gets wasted, and the experience behind that is real: an open afternoon can drift. The queueing evidence in Part 2 says the opposite about a full week: without slack, every wait grows, and fast. Neither cancels the other. The line is a sharp joke about organisations, not evidence about you, and the honest response to drift is a named slack block with a default use, not a calendar booked to every hour.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The Friday afternoon that saved Tuesday.</strong> An analyst keeps Friday afternoons unbooked and tells the team lead why: "That is where this week's overruns go." Most weeks something lands in it: a dashboard fix that ran long on Tuesday, a quick ask that turned into a half day. When nothing does, the analyst spends it on the long-term model nobody is chasing. Over a quarter the analyst's dates hold more often than anyone else's, and the long-term model ships. The block was never empty time; it was the part of the plan built for the week as it actually runs.</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Find your real load</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">Your plan says how full your week looks by estimate. Your real load says how full it runs: estimates times your overrun ratio, plus the quick asks and the minutes spent getting back into work after each interruption. Build Dara's constructed week first, then your own next week beside it. Your numbers will differ.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 336" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One stacked bar for Dara's constructed week against 20 focus hours for the list. Planned by estimate 14 hours, 70 percent. Plus 3 hours of overrun in mint, 1.5 hours of quick asks, 1.5 hours resuming after interruptions. Total 20 hours, a real load of 100 percent.">
+        <defs>
+          <filter id="s3dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="68" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s3dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7A3B69" stroke-width="1" opacity=".5"/></pattern>
+        </defs>
+        <style>
+          .s3dH { font: 800 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3dL { font: 600 12px Inter, sans-serif; fill: #2A1C26; }
+          .s3dS { font: 400 11px Inter, sans-serif; fill: #6B5A66; }
+          .s3dB { font: 800 11px Inter, sans-serif; fill: #1D5446; }
+          .s3dA { font: 700 11px Inter, sans-serif; fill: #7A3B69; }
+          .s3dN { font: 400 12px Inter, sans-serif; fill: #6B5A66; }
+        </style>
+
+        <text class="s3dH" x="30" y="26">DARA'S WEEK: PLANNED TO 70%, RAN AT 100%</text>
+        <text class="s3dS" x="30" y="48">focus hours left for the list after recurring reports: about 20 a week</text>
+
+        <g filter="url(#s3dSk)" fill="none" stroke="#2A1C26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="80" y="110" width="490" height="50" rx="4" fill="#F8EEF4"/>
+          <rect x="570" y="110" width="105" height="50" rx="2" fill="#E3F3EE" stroke="#2A7362"/>
+          <rect x="675" y="110" width="52" height="50" rx="2" fill="url(#s3dHc)"/>
+          <rect x="727" y="110" width="53" height="50" rx="2" fill="#FFFFFF"/>
+          <path d="M570 96 L570 172" stroke="#6B5A66" stroke-dasharray="5 4"/>
+          <path d="M780 96 L780 172" stroke-dasharray="5 4"/>
+          <circle cx="822" cy="138" r="16" fill="#FFFFFF"/>
+          <path d="M822 138 L822 128 M822 138 L830 142 M816 118 L828 118"/>
+          <rect x="80" y="228" width="720" height="66" rx="8" transform="rotate(0.3 440 261)" fill="#FFFFFF"/>
+        </g>
+
+        <text class="s3dA" x="564" y="84" text-anchor="end">PLAN: 70% BY ESTIMATE</text>
+        <text class="s3dA" x="780" y="84" text-anchor="end">REAL LOAD: 100%</text>
+        <text class="s3dL" x="96" y="140">planned by estimate: 14 h</text>
+        <text class="s3dB" x="622" y="140" text-anchor="middle">+3 h</text>
+        <text class="s3dS" x="701" y="140" text-anchor="middle">+1.5</text>
+        <text class="s3dS" x="754" y="140" text-anchor="middle">+1.5</text>
+        <text class="s3dB" x="622" y="190" text-anchor="middle">overrun</text>
+        <text class="s3dS" x="701" y="190" text-anchor="middle">quick asks</text>
+        <text class="s3dS" x="754" y="208" text-anchor="middle">resuming</text>
+
+        <text class="s3dL" x="96" y="254">20 h for the list = 14 planned + 3 overrun + 1.5 quick asks + 1.5 resuming</text>
+        <text class="s3dS" x="96" y="276">Planned to 70% by estimate, it ran at 100%: the slack was spent, not wasted</text>
+
+        <text class="s3dN" x="30" y="322">Constructed: Dara's week, built for teaching. Your numbers will differ.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the mint block is the overrun; together with the asks and the resuming it ate every hour of slack</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Count the focus hours left for your list.</strong> Start from your focus hours in a typical week, then take out the recurring work that happens whatever is on the list: standing reports, regular check-ins, the weekly refresh. What is left is the capacity your list actually competes for. If you have not measured where your week goes, the time audit in <a href="https://phoebefu6.github.io/learn-ai-productivity-with-phoebe/">AI Productivity ↗</a> is the way to get the first number.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · capacity for the list</span>Dara (constructed):
+  focus hours a day             6 h
+  recurring reports a day      -2 h
+  left for the list a day       4 h
+  x 5 days                    = 20 h a week
+
+You:  ____ h a day - ____ h recurring = ____ h x 5 = ____ h</div>
+      </div>
+      <div class="step">
+        <p><strong>Sum the planned estimates for next week.</strong> Take the lines you intend to work on next week and add up your best-guess estimates, the first number from session 2's two-number habit. Do not add any padding here; the next steps do that with your own data.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · planned by estimate</span>Dara's lines for next week, best guesses:
+  quarterly churn analysis, first half    3.0 h
+  exec dashboard fix                      2.0 h
+  ops data pulls (x4)                     4.0 h
+  code reviews (x3)                       3.0 h
+  analysis section for the team lead      2.0 h
+                                   total 14.0 h
+
+14 / 20 = 70% of capacity by estimate. It looks comfortable.</div>
+      </div>
+      <div class="step">
+        <p><strong>Multiply by your overrun ratio from session 2.</strong> Your median ratio of actual to estimate turns the planned total into what the work usually takes. The difference is the overrun, and it lands on your slack before anything else does.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · apply the overrun</span>planned          14.0 h
+x median ratio    1.2
+= expected work  16.8 h, call it 17 h
+
+overrun = 17 - 14 = about 3 h
+
+Your numbers will differ: use your own median, not Dara's 1.2.</div>
+      </div>
+      <div class="step">
+        <p><strong>Add the quick asks and the time it takes to resume.</strong> Quick asks are the five- and ten-minute requests that arrive mid-task. Each one also costs a few minutes of getting back into what you were doing. Estimate both from last week: how many asks, about how long each, and a few minutes of resuming each time. Session 5 looks hard at what the research does and does not say about that resume cost; for now, a rough figure from your own week is enough.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · asks and resuming</span>Dara (constructed), one week:
+  quick asks          about 12, roughly 7-8 min each   = about 1.5 h
+  resuming after each about 7-8 min                    = about 1.5 h
+
+real work = 17 + 1.5 + 1.5 = 20 h</div>
+      </div>
+      <div class="step">
+        <p><strong>Divide for your real load, and compare it with the bench.</strong> Real load is everything the week will actually ask of you, divided by the focus hours for your list. Then set it beside the session 4 bench, which runs eight modelled weeks of a constructed analyst: its rung 3 plans to 70 percent of focus hours and accepts 68.3 percent of them by estimate, and that week runs at a real load of 93.8 percent. Dara's constructed week and the bench tell the same story from two directions.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · real load</span>real load = real work / focus hours for the list
+          = 20 / 20 = 100%
+
+Plan by estimate   70%   -&gt;   real load   100%   (Dara, constructed)
+Bench rung 3       68.3% by estimate   -&gt;   93.8% real load
+
+On the curve from Part 2, 100% has no ceiling: the list never drains.</div>
+      </div>
+      <div class="step">
+        <p><strong>Choose your plan level.</strong> Work backwards. Pick the real load you want the week to run at, then solve for how much you can plan by estimate once overruns, asks and resuming are taken out. There is no single right target: a lower one keeps waits short and dates honest, a higher one finishes more but makes everything on the list wait longer. Session 4's bench shows that trade with real model output, including what slack costs in tasks finished.</p>
+        <div class="prompt-box good"><span class="label">★ Step 6 · plan level</span>Dara wants the week to run at about 80% real load:
+  target real work      0.8 x 20 = 16 h
+  minus asks + resume   16 - 3   = 13 h of true task time
+  divide by ratio 1.2   13 / 1.2 = about 11 h planned by estimate
+
+Plan about 11 h of the 20 (about 55%), keep the rest as one named
+block, and move the 3 h that no longer fit to next week or hand back.
+Constructed arithmetic. Your numbers will differ.</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>A plan level is a choice, so say it out loud.</strong> When the team lead asks why only 11 hours of new work fit, show the arithmetic: capacity, estimates, your own overrun ratio, the asks. A number built from your own week is far easier to agree on than "I'm busy". If the same meetings eat your focus hours every week, the fix is upstream of the plan; <a href="https://phoebefu6.github.io/learn-facilitation-with-phoebe/">Facilitation ↗</a> covers meetings that eat the day.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 4</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Compute last week's real load.</strong> Use what actually happened: hours spent on the list, quick asks and resuming, divided by the focus hours you had for it. Write the plan-by-estimate figure next to it and note the gap.</li>
+      <li><strong>Count your queue.</strong> On two different days, count the tasks sitting on your list and how many you finished. Use Little's law to estimate how many days the average task waits with you.</li>
+      <li><strong>Book one shared slack block.</strong> Take the hours you would have spread as padding, put them in one named block next week, and give it a default use for when nothing overruns.</li>
+      <li><strong>Plan next week at a level you chose.</strong> Pick a real-load target, work backwards as in step 6, and record what you moved or handed back to fit it.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 3 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">1 · For one person, what does utilisation measure?</p>
+      <button class="qopt" type="button">A · The share of available focus time spent busy on work: busy focus time divided by focus time available</button>
+      <button class="qopt" type="button">B · How long the average request waits before you start it</button>
+      <button class="qopt" type="button">C · The number of tasks finished per day</button>
+      <button class="qopt" type="button">D · How accurate your estimates were last week</button>
+      <p class="qwhy">Utilisation is a share of time, not a wait or a count. That is exactly why it can mislead: two weeks at the same utilisation can make work wait very different lengths of time, depending on how unevenly the work arrives and how much its lengths vary.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">2 · On the one-server queueing curve, what happens to the average wait as utilisation goes from 80 to 90 percent?</p>
+      <button class="qopt" type="button">A · It rises by about 10 percent, in step with utilisation</button>
+      <button class="qopt" type="button">B · It stays about the same; waits only grow past 99 percent</button>
+      <button class="qopt" type="button">C · It more than doubles, from about 4 task-lengths to about 9</button>
+      <button class="qopt" type="button">D · It falls, because a busier person works faster</button>
+      <p class="qwhy">The wait in task-lengths is rho / (1 - rho): 0.8 / 0.2 = 4 and 0.9 / 0.1 = 9. Ten points of busyness more than double the wait, and the curve keeps steepening toward 100 percent.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">3 · What was Parkinson's law, as first published?</p>
+      <button class="qopt" type="button">A · A controlled study showing that people waste any slack in their schedule</button>
+      <button class="qopt" type="button">B · Satire in The Economist (19 November 1955) about civil-service headcount growth, reported, not evidence that slack is wasted</button>
+      <button class="qopt" type="button">C · A queueing formula for the average wait at a single server</button>
+      <button class="qopt" type="button">D · A 1990s productivity rule for setting tight deadlines</button>
+      <p class="qwhy">The line "Work expands so as to fill the time available for its completion" opens a satirical essay about bureaucracy, as reported. It is a sharp joke about organisations, not a measurement of individual slack.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">MIT OpenCourseWare 2.854 (2016), M/M/1 Queue</span><span class="note">The exact one-server wait, Wq = lambda / (mu(mu - lambda)), and Little's law L = lambda W, read in the note; the Little's law example on this page is constructed arithmetic</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Kingman (1961), The single server queue in heavy traffic</span><span class="note">The G/G/1 approximation and its labels, and the worked values 1, 4 and 19, read in Mandelbaum's Technion lecture notes, "The G/G/1 Queue"; 9 computed from the formula; the 1961 paper was not read</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Parkinson (1955, 19 November), Parkinson's law, The Economist</span><span class="note">Reported: the opening line and its satirical subject; the original page could not be fetched</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">One shared buffer instead of per-task padding</span><span class="note">Planning practice, reasoned from the queueing curve; not a cited finding</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Dara's week and every Dara number</span><span class="note">Constructed for teaching; the 20 hours, the overrun, the asks and the 100 percent real load are arithmetic on invented figures, not measurements</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 3 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Utilisation</b><span>Busy focus time divided by focus time available. A share of time, not a wait.</span></div>
+      <div class="cheat-item"><b>Little's law</b><span>L = lambda W. Tasks on your list divided by tasks finished a day is the average days each one waits.</span></div>
+      <div class="cheat-item"><b>The curve</b><span>Wait in task-lengths = rho / (1 - rho): 1 at 50%, 4 at 80%, 9 at 90%, 19 at 95%.</span></div>
+      <div class="cheat-item"><b>Variability makes it worse</b><span>Kingman: uneven arrivals and uneven task lengths raise the wait at the same load. Overruns raise both.</span></div>
+      <div class="cheat-item"><b>One shared buffer</b><span>Pool the padding into one named block where the overrun lands. Parkinson's law is satire, reported.</span></div>
+      <div class="cheat-item"><b>Real load</b><span>(Estimates x your ratio + quick asks + resuming) / focus hours for the list. Plan backwards from it.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Dara planned to 70 percent and ran at 100. Session 4 is the calendar bench: eight modelled weeks of a constructed analyst, run at four plan levels, so you can watch overruns and interruptions eat the slack, see what saying yes to every ask does, and check the model against Kingman's curve.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 3 of 6 · learn-time-management-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="02-estimates-are-optimistic.html">← Prev: Estimates are optimistic by default</a> &nbsp;·&nbsp; <a href="04-the-calendar-bench.html">Next: The calendar bench →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/app.js?v=15"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Six sessions on protecting attention and energy by planning against real capacity: urgent against important, why estimates run optimistic, why slack is not waste, a calendar bench that runs eight weeks of a constructed analyst's work in your browser, interruptions, and saying no with a weekly plan you keep. Free, by Phoebe Fu.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Learn Time Management with Phoebe">
+<meta property="og:description" content="Plan against real capacity. Six sessions, one constructed analyst, and a calendar bench where a full week makes everything late and a 70 percent plan keeps its promises.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn Time Management with Phoebe">
+<meta name="twitter:description" content="Why a full calendar makes everything late: eight weeks of work queued in your browser, checked against queueing theory.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Learn Time Management with Phoebe</title>
+<link rel="stylesheet" href="assets/style.css?v=15">
+<style>
+
+  .stats-row { display: flex; gap: 2.4rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 2.1rem; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .72rem; opacity: 1; text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .course-card {
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--diff, var(--indigo));
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+    position: relative;
+  }
+  .course-card:hover { border-color: var(--indigo-soft); border-top-color: var(--diff, var(--indigo)); box-shadow: 0 8px 28px rgba(var(--shadow-rgb),.16); transform: translateY(-3px); }
+  .course-card .cicon { font-size: 1.7rem; line-height: 1; }
+  .course-card .cnum { font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .1em; }
+  .course-card h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
+  .course-card p { font-size: .85rem; color: var(--muted); flex: 1; }
+  .course-card .meta { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+  .diff-legend { display: flex; gap: 1rem; margin-top: 1.6rem; font-size: .74rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
+  .diff-legend i { display: inline-block; width: .85rem; height: .35rem; border-radius: 999px; margin-right: .35rem; vertical-align: middle; }
+
+  .paths { margin-top: 2.6rem; }
+  .paths h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
+  .paths .plede { color: var(--muted); font-size: .92rem; margin-bottom: .8rem; }
+  .path { display: flex; gap: .55rem; align-items: center; padding: .75rem 0; border-bottom: .5px solid var(--hairline); flex-wrap: wrap; }
+  .path:last-child { border-bottom: none; }
+  .path b { min-width: 15.5rem; font-size: .9rem; }
+  .path .pstep { background: var(--indigo-50); color: var(--indigo); border-radius: 999px; padding: .16rem .68rem; font-weight: 700; font-size: .8rem; text-decoration: none; transition: all .12s ease; }
+  .path .pstep:hover { background: var(--indigo); color: #fff; }
+  .path .parr { color: var(--muted); font-weight: 700; }
+
+  .mm-section { margin-top: 1.6rem; }
+  .mm-section h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .2rem; }
+  .mm-section .mm-lede { color: var(--muted); font-size: .92rem; margin-bottom: .4rem; }
+  .mm-wrap { border: 1px solid var(--hairline); border-radius: var(--radius); background: linear-gradient(180deg,#fff,var(--indigo-50)); padding: .6rem; overflow-x: auto; }
+  .mm-svg { width: 100%; height: auto; display: block; max-width: 60rem; margin: 0 auto; min-width: 34rem; }
+  .mm-link { cursor: pointer; text-decoration: none; }
+  .mm-node rect { transition: opacity .15s ease, filter .15s ease; }
+  .mm-node text { pointer-events: none; }
+  .mm-link:hover .mm-node rect { filter: brightness(1.06); }
+  .mm-edge { transition: opacity .15s ease; }
+
+  .not-this { border: 1px solid var(--hairline); border-left: 4px solid var(--clay); border-radius: var(--radius); background: #fff; padding: 1.1rem 1.3rem; margin-top: 1.2rem; }
+  .not-this h3 { font-size: .95rem; font-weight: 800; margin-bottom: .5rem; }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn with Phoebe · Leadership</div>
+    <h1>Learn <span class="accent">Time Management</span> with Phoebe</h1>
+    <p class="sub">Time and stress management as an operating skill: protect your attention and energy by planning against the capacity you really have. Six sessions on telling urgent from important, why estimates run optimistic by default, why slack is not waste, what interruptions cost, and how to say no and keep a weekly plan. One constructed running case, Dara, a new analyst on a busy data team, and one bench: eight weeks of Dara's work queued minute by minute in your browser, checked against queueing theory.</p>
+    <div class="stats-row">
+      <div class="stat"><b data-count="6">6</b><span>sessions</span></div>
+      <div class="stat"><b data-count="128">128</b><span>asks queued on the bench</span></div>
+      <div class="stat"><b data-count="8">8</b><span>weeks of work modelled</span></div>
+      <div class="stat"><b data-count="36">36</b><span>asks handed back at a 70% plan</span></div>
+      <div class="stat"><b data-count="45">45</b><span>min per session</span></div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>The six sessions 🧭 <span style="font-size:.85rem;font-weight:600;color:var(--muted)">· from one honest list to a week you can keep</span></h2>
+      <p class="plede">The running case is <strong>Dara, a constructed new analyst</strong> on a busy data team. Requests arrive all day: data pulls, dashboard fixes, reviews, the occasional real analysis, and quick questions in between. Dara says yes to everything, works late, and still misses dates. Dara and the team are invented for teaching, and every page says so. Stress here means workload and planning: nothing on these pages is medical or clinical advice, and the body side of stress (breathing, sleep, recovery physiology) belongs to planned courses on <a href="https://phoebefu6.github.io/learn-with-phoebe/">the Learn with Phoebe shelf ↗</a>.</p>
+    </div>
+    <div class="course-grid">
+      <a class="course-card" href="courses/01-busy-is-not-important.html" style="--diff:#34D399">
+        <span class="cicon">🗂️</span>
+        <span class="cnum">Session 1 · foundations</span>
+        <h3>Busy is not the same as important</h3>
+        <p>Urgent against important, with the Eisenhower line traced to its 1954 source and the matrix to Covey, one priority list instead of five, and stress as load against capacity.</p>
+        <span class="meta"><span class="pill amber">▶ Start here</span></span>
+      </a>
+      <a class="course-card" href="courses/02-estimates-are-optimistic.html" style="--diff:#FBBF24">
+        <span class="cicon">📏</span>
+        <span class="cnum">Session 2 · core</span>
+        <h3>Estimates are optimistic by default</h3>
+        <p>The planning fallacy read at source: a thesis forecast of 33.9 days that took 55.5. Why best and worst cases do not fix it, and what an outside view does and does not buy.</p>
+        <span class="meta"><span class="pill">the planning fallacy</span></span>
+      </a>
+      <a class="course-card" href="courses/03-slack-is-not-waste.html" style="--diff:#FBBF24">
+        <span class="cicon">🧮</span>
+        <span class="cnum">Session 3 · core</span>
+        <h3>Slack is not waste</h3>
+        <p>Utilisation and the queueing curve: why waiting grows slowly, then explodes, as a week fills. Where to put buffers, and why Parkinson's law is satire, not evidence.</p>
+        <span class="meta"><span class="pill">the queueing curve</span></span>
+      </a>
+      <a class="course-card" href="courses/04-the-calendar-bench.html" style="--diff:#F87171">
+        <span class="cicon">📅</span>
+        <span class="cnum">Session 4 · bench night</span>
+        <h3>The calendar bench</h3>
+        <p>Eight weeks of Dara's work, queued in your browser. Book every hour, plan to 85, plan to 70, add a focus block. Then say yes to every ask, and add one urgent interrupt a day.</p>
+        <span class="meta"><span class="pill amber">★ the bench</span></span>
+      </a>
+      <a class="course-card" href="courses/05-interruptions-and-switching.html" style="--diff:#FB923C">
+        <span class="cicon">🔔</span>
+        <span class="cnum">Session 5 · deeper</span>
+        <h3>Interruptions and the cost of switching</h3>
+        <p>What the switching studies measured, where "40 percent" and "23 minutes" come from, why interrupted people work faster and feel worse, and batching asks into one slot.</p>
+        <span class="meta"><span class="pill">evidence, tiered</span></span>
+      </a>
+      <a class="course-card" href="courses/06-saying-no-and-the-plan.html" style="--diff:#FB923C">
+        <span class="cicon">🗓️</span>
+        <span class="cnum">Session 6 · deeper</span>
+        <h3>Saying no, and the plan you keep</h3>
+        <p>Handing work back without burning trust, renegotiating a date before it is missed, recovery as part of capacity, and a one-page weekly plan with a slack line.</p>
+        <span class="meta"><span class="pill amber">🔒 the plan</span></span>
+      </a>
+    </div>
+    <div class="diff-legend">
+      <span><i style="background:#34D399"></i>foundations</span>
+      <span><i style="background:#FBBF24"></i>core</span>
+      <span><i style="background:#FB923C"></i>deeper</span>
+      <span><i style="background:#F87171"></i>bench night</span>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Your passport 🎫</h2>
+      <p class="plede">Clear all three quiz questions in a session and it gets stamped. Six stamps means you can sort urgent from important, re-estimate from your own history, find your real load, read a queueing curve, batch interruptions, and hand work back with a date attached. Stamps live in this browser only.</p>
+    </div>
+    <div class="pp-strip"></div>
+  </section>
+  <section class="section">
+    <div class="not-this">
+      <h3>What this is not, so you land in the right place 🧭</h3>
+      <table class="clean">
+        <tr><th>If your question is</th><th>Go here instead</th></tr>
+        <tr><td>Where does my week actually go, and can AI triage my inbox and follow-ups?</td><td><a href="https://phoebefu6.github.io/learn-ai-productivity-with-phoebe/">AI Productivity ↗</a></td></tr>
+        <tr><td>How do I automate a repetitive task away entirely?</td><td><a href="https://phoebefu6.github.io/learn-automation-with-phoebe/">Automation ↗</a></td></tr>
+        <tr><td>How do I schedule a whole project, a team calendar or a programme?</td><td><a href="https://phoebefu6.github.io/learn-data-pmo-with-phoebe/">Data PMO ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-tech-project-pmo-with-phoebe/">Tech Project PMO ↗</a></td></tr>
+        <tr><td>Breathing, sleep, and the physiology of stress?</td><td>Planned courses on <a href="https://phoebefu6.github.io/learn-with-phoebe/">the shelf ↗</a>; this is workload and planning, not medical advice</td></tr>
+        <tr><td><strong>My week is full, everything is late, and I want a plan that matches what I can really do.</strong></td><td><strong>you are in the right place</strong></td></tr>
+      </table>
+      <p style="margin-top:.7rem;font-size:.86rem;color:var(--muted)"><strong>One person's capacity, planned honestly.</strong> Time audits, automation, project scheduling and the body side of stress are taught next door and linked from here rather than repeated.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths">
+      <h2>Choose your path 🗺️</h2>
+      <p class="plede">Three doors into the same idea: plan against the capacity you really have, not the one on the calendar.</p>
+      <div class="path"><b>🔥 Everything is late right now</b>
+        <a class="pstep" href="courses/03-slack-is-not-waste.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-calendar-bench.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-saying-no-and-the-plan.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">find your load, see the curve, hand work back</span>
+      </div>
+      <div class="path"><b>🔔 I never get an hour to think</b>
+        <a class="pstep" href="courses/01-busy-is-not-important.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-interruptions-and-switching.html">5</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-calendar-bench.html">4</a>
+        <span style="font-size:.82rem;color:var(--muted)">one list, batch the asks, test a focus block</span>
+      </div>
+      <div class="path"><b>🧭 The whole craft</b>
+        <a class="pstep" href="courses/01-busy-is-not-important.html">1</a><span class="parr">→</span>
+        <a class="pstep" href="courses/02-estimates-are-optimistic.html">2</a><span class="parr">→</span>
+        <a class="pstep" href="courses/03-slack-is-not-waste.html">3</a><span class="parr">→</span>
+        <a class="pstep" href="courses/04-the-calendar-bench.html">4</a><span class="parr">→</span>
+        <a class="pstep" href="courses/05-interruptions-and-switching.html">5</a><span class="parr">→</span>
+        <a class="pstep" href="courses/06-saying-no-and-the-plan.html">6</a>
+        <span style="font-size:.82rem;color:var(--muted)">from one honest list to a week you keep</span>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>What is honest here 🧾</h2>
+      <p class="plede">Productivity advice travels with famous numbers, and several of the most quoted ones do not come from where they are said to come from. Each claim on these pages carries its status.</p>
+    </div>
+    <table class="clean">
+      <tr><th>Claim</th><th>Status</th></tr>
+      <tr><td>Every bench number: real load, waits, deadlines missed, overtime, backlog</td><td><strong>Modelled.</strong> A seeded queue of Dara's constructed work, run minute by minute in your browser and labelled on every number; an independent Python run reproduces every default value exactly</td></tr>
+      <tr><td>The queueing curve: waiting grows as utilisation rises, slowly then steeply</td><td><strong>Theory, checked.</strong> Kingman's approximation, read in university lecture notes, drawn next to a long simulation of the same task mix; they agree within 0.4 hours of waiting up to 91 percent load</td></tr>
+      <tr><td>"Students forecast 33.9 days for a thesis that took 55.5"</td><td><strong>Read at source</strong> in Buehler, Griffin and Ross (1994)</td></tr>
+      <tr><td>"Eisenhower's urgent-important matrix"</td><td><strong>Half true.</strong> In 1954 Eisenhower quoted an unnamed college president on urgent and important problems; the four-quadrant matrix is Stephen Covey's, decades later (reported)</td></tr>
+      <tr><td>"Multitasking costs 40 percent of productive time" and "23 minutes to refocus"</td><td><strong>Not what the papers say.</strong> The 40 percent is an estimate quoted by the APA, not a result of the 2001 experiments; 23 minutes could not be traced to a paper, and the 2005 field study reports 25 minutes 26 seconds to resume, with a huge spread. Session 5 teaches the disagreement</td></tr>
+      <tr><td>Dara, the team and every Dara number</td><td><strong>Constructed,</strong> for teaching</td></tr>
+    </table>
+  </section>
+  <section class="section mm-section">
+    <h2>The knowledge map 🧠</h2>
+    <p class="mm-lede">The whole path at a glance - hover a session to spotlight its concepts, click any node to jump in.</p>
+    <div class="mm-wrap"><div id="mindmap"></div></div>
+  </section>
+  <footer class="pagefoot">
+    <span>learn-time-management-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span>Neighbours on the shelf: <a href="https://phoebefu6.github.io/learn-ai-productivity-with-phoebe/">AI Productivity ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-facilitation-with-phoebe/">Facilitation ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-data-pmo-with-phoebe/">Data PMO ↗</a></span>
+  </footer>
+</main>
+<script>
+window.MINDMAP_DATA = {
+ "title": "Time\nManagement",
+ "centerColor": "#4E2343",
+ "sessions": [
+  {
+   "label": "Busy is not the\nsame as important",
+   "href": "courses/01-busy-is-not-important.html",
+   "color": "#34D399",
+   "concepts": [
+    {
+     "label": "Urgent is not important",
+     "href": "courses/01-busy-is-not-important.html"
+    },
+    {
+     "label": "One priority list",
+     "href": "courses/01-busy-is-not-important.html"
+    },
+    {
+     "label": "Load against capacity",
+     "href": "courses/01-busy-is-not-important.html"
+    }
+   ]
+  },
+  {
+   "label": "Estimates are\noptimistic",
+   "href": "courses/02-estimates-are-optimistic.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "33.9 days took 55.5",
+     "href": "courses/02-estimates-are-optimistic.html"
+    },
+    {
+     "label": "Worst case is not safe",
+     "href": "courses/02-estimates-are-optimistic.html"
+    },
+    {
+     "label": "The outside view",
+     "href": "courses/02-estimates-are-optimistic.html"
+    }
+   ]
+  },
+  {
+   "label": "Slack is\nnot waste",
+   "href": "courses/03-slack-is-not-waste.html",
+   "color": "#FBBF24",
+   "concepts": [
+    {
+     "label": "Wait explodes near full",
+     "href": "courses/03-slack-is-not-waste.html"
+    },
+    {
+     "label": "Buffer the variance",
+     "href": "courses/03-slack-is-not-waste.html"
+    },
+    {
+     "label": "Parkinson was satire",
+     "href": "courses/03-slack-is-not-waste.html"
+    }
+   ]
+  },
+  {
+   "label": "The calendar\nbench",
+   "href": "courses/04-the-calendar-bench.html",
+   "color": "#F87171",
+   "concepts": [
+    {
+     "label": "70% plan, 93.8% real",
+     "href": "courses/04-the-calendar-bench.html"
+    },
+    {
+     "label": "Yes to every ask: anti",
+     "href": "courses/04-the-calendar-bench.html"
+    },
+    {
+     "label": "One urgent a day: break",
+     "href": "courses/04-the-calendar-bench.html"
+    }
+   ]
+  },
+  {
+   "label": "Interruptions\nand switching",
+   "href": "courses/05-interruptions-and-switching.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Faster, more stressed",
+     "href": "courses/05-interruptions-and-switching.html"
+    },
+    {
+     "label": "40% and 23 min, traced",
+     "href": "courses/05-interruptions-and-switching.html"
+    },
+    {
+     "label": "Batch the quick asks",
+     "href": "courses/05-interruptions-and-switching.html"
+    }
+   ]
+  },
+  {
+   "label": "Saying no, and\nthe plan you keep",
+   "href": "courses/06-saying-no-and-the-plan.html",
+   "color": "#FB923C",
+   "concepts": [
+    {
+     "label": "Hand back with a date",
+     "href": "courses/06-saying-no-and-the-plan.html"
+    },
+    {
+     "label": "Recovery is capacity",
+     "href": "courses/06-saying-no-and-the-plan.html"
+    },
+    {
+     "label": "A weekly plan with slack",
+     "href": "courses/06-saying-no-and-the-plan.html"
+    }
+   ]
+  }
+ ]
+};
+</script>
+<script src="assets/mindmap.js?v=15"></script>
+<script src="assets/app.js?v=15"></script>
+</body>
+</html>

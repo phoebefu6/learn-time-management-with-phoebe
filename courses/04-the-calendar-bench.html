@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Session 4 of 6. Eight weeks of a constructed analyst's work queued minute by minute in your browser: book every hour, plan to 85 percent, plan to 70 percent, add a protected focus block. Then say yes to every ask, add one urgent interrupt a day, and check the model against Kingman's queueing approximation.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="The calendar bench - learn time management with phoebe">
+<meta property="og:description" content="Session 4 of 6. A 70 percent plan became a 93.8 percent real load. Run the week yourself, then break it.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/courses/04-the-calendar-bench.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The calendar bench - learn time management with phoebe">
+<meta name="twitter:description" content="Session 4 of 6. Four plans, an anti-lever and a break button, in a seeded queue you run in the browser.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-time-management-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Session 4 · The calendar bench - learn time management with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=15">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-time-management-with-phoebe</a> / Session 4 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Time Management with Phoebe · Session 4 of 6</div>
+    <h1>The calendar <span class="accent">bench</span></h1>
+    <p class="sub">Sessions 2 and 3 made two claims: estimates run short, and a week planned to the last hour makes everything late. Tonight you test both on eight weeks of Dara's work, queued one working minute at a time in your browser. Four ways to plan the same stream of requests, one obvious fix that backfires, one break button, and a check of the whole model against the queueing theory from session 3.</p>
+    <div class="chip-row">
+      <span class="chip level">🔴 Bench night</span>
+      <span class="chip audience">Anyone who plans a week</span>
+      <span class="chip audience">A browser; nothing to install</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:3">3-12 · How the model works</span>
+      <span class="a3" style="flex:6">12-38 · The bench, rung by rung</span>
+      <span class="a4" style="flex:1">38-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Nothing on this bench happened. Dara is constructed and the eight weeks are a model: the same seeded stream of requests every time, so the only thing that changes between rungs is how Dara plans. That makes the bench good for comparing ways of planning a week, and useless for predicting yours. Every number carries a "modelled" tag, and an independent Python run reproduces every default number on this page exactly.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">modelled = printed by the seeded model, not measured</span>
+      <span class="pill">anti-lever and break = the two red buttons</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> The modelled shape of four plans for the same work, read as two numbers at once, deadlines missed and tasks finished; why a 70 percent plan still runs close to full; what saying yes to every ask does to eight weeks; how much a protected focus block and one urgent interrupt a day each move the result; and how far a small model agrees with queueing theory.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers how the model fills Dara's week</span>
+      <h2>An intake gate, a queue and six focus hours</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Requests arrive through the working day. Each one passes an intake gate where Dara decides, by estimate, whether it fits the week's plan; if not, it goes back to the team lead to re-plan. Accepted work waits in a queue ordered by deadline. Dara works it for six focus hours a day, quick asks interrupt at once, and every interruption costs a few minutes to get back into the task.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The model as a flow. 128 seeded asks enter an intake gate that caps the week by estimate at 100, 85 or 70 percent; asks over the cap go down to handed back to the team lead. Accepted asks join a queue ordered by earliest deadline, then go to Dara, highlighted in mint, who works six focus hours a day with true time equal to the estimate times an overrun. Quick asks interrupt Dara from above; overtime of up to two hours on due work hangs below. Finished work exits to done.">
+        <defs>
+          <filter id="s4aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="13" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s4aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7A3B69" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="s4aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1C26" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .s4aH { font: 800 12px Inter, sans-serif; fill: #2A1C26; }
+          .s4aL { font: 600 12px Inter, sans-serif; fill: #2A1C26; }
+          .s4aS { font: 400 11px Inter, sans-serif; fill: #6B5A66; }
+          .s4aB { font: 800 11px Inter, sans-serif; fill: #1D5446; }
+          .s4aA { font: 700 11px Inter, sans-serif; fill: #7A3B69; }
+          .s4aN { font: 400 12px Inter, sans-serif; fill: #6B5A66; }
+        </style>
+
+        <text class="s4aH" x="30" y="26">ONE WORKING MINUTE AT A TIME, FOR 40 WORKING DAYS</text>
+
+        <g filter="url(#s4aSk)" fill="none" stroke="#2A1C26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="104" width="130" height="72" rx="10" transform="rotate(-1 95 140)" fill="url(#s4aHc)"/>
+          <rect x="196" y="100" width="150" height="80" rx="10" transform="rotate(0.8 271 140)" fill="#FFFFFF"/>
+          <rect x="196" y="222" width="150" height="44" rx="10" transform="rotate(-0.8 271 244)" fill="#F8EEF4"/>
+          <rect x="382" y="100" width="170" height="80" rx="10" transform="rotate(-0.6 467 140)" fill="#FFFFFF"/>
+          <rect x="588" y="100" width="160" height="80" rx="10" transform="rotate(0.6 668 140)" fill="#E3F3EE" stroke="#2A7362"/>
+          <rect x="588" y="40" width="160" height="36" rx="10" transform="rotate(-1 668 58)" fill="#FFFFFF"/>
+          <rect x="588" y="222" width="160" height="44" rx="10" transform="rotate(1 668 244)" fill="#F8EEF4"/>
+          <rect x="784" y="116" width="66" height="48" rx="10" transform="rotate(1.5 817 140)" fill="#FFFFFF"/>
+          <path d="M164 140 L190 140" marker-end="url(#s4aAr)"/>
+          <path d="M350 140 L376 140" marker-end="url(#s4aAr)"/>
+          <path d="M271 184 L271 216" marker-end="url(#s4aAr)"/>
+          <path d="M556 140 L582 140" marker-end="url(#s4aAr)"/>
+          <path d="M752 140 L778 140" marker-end="url(#s4aAr)"/>
+          <path d="M668 80 L668 96" marker-end="url(#s4aAr)"/>
+          <path d="M668 184 L668 216" marker-end="url(#s4aAr)"/>
+        </g>
+
+        <rect x="42" y="118" width="106" height="44" rx="6" fill="#FFFFFF"/>
+        <text class="s4aL" x="95" y="136" text-anchor="middle">128 asks</text>
+        <text class="s4aS" x="95" y="152" text-anchor="middle">seeded, 8 weeks</text>
+        <text class="s4aL" x="210" y="124">intake gate</text>
+        <text class="s4aS" x="210" y="144">cap by estimate:</text>
+        <text class="s4aS" x="210" y="160">100, 85 or 70%</text>
+        <text class="s4aL" x="210" y="242">handed back</text>
+        <text class="s4aS" x="210" y="258">to the team lead</text>
+        <text class="s4aL" x="396" y="124">queue</text>
+        <text class="s4aS" x="396" y="144">earliest deadline first,</text>
+        <text class="s4aS" x="396" y="160">never pre-empted</text>
+        <text class="s4aB" x="602" y="124">Dara</text>
+        <text class="s4aS" x="602" y="144">6 focus hours a day</text>
+        <text class="s4aS" x="602" y="160">true = est. x overrun</text>
+        <text class="s4aL" x="602" y="63">quick asks</text>
+        <text class="s4aS" x="676" y="92">interrupt at once</text>
+        <text class="s4aL" x="602" y="242">overtime</text>
+        <text class="s4aS" x="602" y="258">up to 2 h, due work</text>
+        <text class="s4aL" x="817" y="144" text-anchor="middle">done</text>
+
+        <text class="s4aN" x="30" y="288">Rung 4's focus block: quick asks in the first 3 focus hours wait and are answered as one batch.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the gate decides by estimate, the queue runs on true time; the whole bench lives in the gap between the two</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The overrun table, and why it is mild<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Each request's true time is its estimate multiplied by an overrun drawn from twenty equally likely values, from 80 percent of the estimate to 165 percent. Six of the twenty are at or under 100 percent, so 30 percent of tasks finish within their estimate. That share is set to match Buehler, Griffin and Ross's thesis study, where 29.7 percent of students finished by their best estimate.</p>
+        <p>The tail is deliberately far milder than that study, where the average thesis took 55.5 days against a forecast of 33.9. Dara's tasks are hours, not months. In this particular draw, the 128 requests add up to 270 hours by estimate and 322 hours of true work, and 33 of the 128 come in at or under their estimate. Your own overruns could be larger or smaller; session 2's homework measures them.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Every rule the model follows<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Arrivals.</strong> Four kinds of request on a seeded stream, about one every 125 working minutes: data pulls (40 percent, due the next day), dashboard fixes (30 percent, due in two days), analyses (15 percent, 4 to 8 hours, due in five days) and reviews (15 percent, due the next day). Quick asks of 5 or 10 minutes arrive about every two focus hours, 132 of them in eight weeks.</p>
+        <p><strong>Intake.</strong> Dara plans each week by estimate. A request is accepted if the estimates already accepted that week plus this one stay inside the plan level; otherwise it is handed back to the team lead to re-plan. The plan ignores last week's carry-over, the way most weekly plans do.</p>
+        <p><strong>Work.</strong> Earliest deadline first; a planned task is never pre-empted by another planned task. Quick asks interrupt at once, and returning to the interrupted task costs a resume overhead, 10 minutes by default. The slider moves it from 0 to 20, because no paper gives one number for it (session 5). At the end of a day Dara keeps going for up to two hours on work due that day or overdue.</p>
+        <p><strong>Scoring.</strong> Wait is the time from a request arriving to it being done, in focus hours (six focus hours is one working day). A deadline is missed if the work finishes after the end of its due day. Real load is all true work taken on, plus quick asks, urgent jobs and resume overheads, divided by the 240 focus hours in eight weeks.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Why the gate uses estimates.</strong> Nobody plans a week with true durations; nobody has them yet. Every sprint board, every calendar block and every "can you fit this in?" is decided on an estimate, and the work then takes what it takes. Software teams that track planned against delivered points see the same gap every sprint. The model keeps that honest: the decision is made on the number you have, the clock runs on the number you did not.</p>
+    </div>
+  </section>
+
+  <section class="section" id="bench">
+    <div class="section-kicker">
+      <span class="klabel">Build-along · the bench</span>
+      <h2>Eight weeks of Dara, rung by rung</h2>
+      <span class="tag demo">★ 26 min · the main event</span>
+    </div>
+    <p class="lede">Start on rung 1 and read the verdict line, then the eight numbers, then the backlog chart. Move one rung at a time and say out loud which number moved and which way. Only then try the two red buttons, one at a time and then together. The slider changes the resume overhead; every number quoted on this page is at the default of 10 minutes.</p>
+
+    <div id="calendar-bench"></div>
+
+    <div class="callout tip">
+      <p><strong>Read it in this order.</strong> Verdict, real load, deadlines missed, then mean wait. On rung 1 Dara takes on 110 of 128 asks, plans 92.8 percent of focus hours by estimate, runs a real load of 125.0 percent, misses 31.8 percent of deadlines and works 32.8 hours of overtime. Keep those numbers in your head as you climb.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers reading the ladder</span>
+      <h2>Seventy on paper, ninety-four in the week</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">Each step down the ladder plans less of the week. The real load falls with it, but never as far as the plan: the gap between the two is the overrun on accepted work plus the quick asks and the minutes spent getting back into interrupted tasks. Slack is where those go.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four rungs as paired bars on a scale of percent of focus hours, with a dashed line at 100 percent. Hatched bars show the share planned by estimate, solid bars the real load. Rung 1, book every hour: planned 92.8, real 125.0, deadlines missed 31.8 percent. Rung 2, plan to 85: planned 77.7, real 105.5, missed 8.6. Rung 3, plan to 70: planned 68.3, real 93.8, missed 3.3, highlighted in mint. Rung 4, 70 plus a focus block: planned 68.3, real 91.9, missed 1.1.">
+        <defs>
+          <filter id="s4bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="29" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="s4bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7A3B69" stroke-width="1" opacity=".5"/></pattern>
+        </defs>
+        <style>
+          .s4bH { font: 800 12px Inter, sans-serif; fill: #2A1C26; }
+          .s4bL { font: 600 12px Inter, sans-serif; fill: #2A1C26; }
+          .s4bS { font: 400 11px Inter, sans-serif; fill: #6B5A66; }
+          .s4bB { font: 800 11px Inter, sans-serif; fill: #1D5446; }
+          .s4bA { font: 700 11px Inter, sans-serif; fill: #7A3B69; }
+          .s4bW { font: 800 12px Inter, sans-serif; fill: #FFFFFF; }
+          .s4bN { font: 400 12px Inter, sans-serif; fill: #6B5A66; }
+        </style>
+
+        <text class="s4bH" x="30" y="26">PLANNED BY ESTIMATE (HATCHED) AGAINST REAL LOAD (SOLID), % OF FOCUS HOURS</text>
+
+        <g filter="url(#s4bSk)" fill="none" stroke="#2A1C26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="64" width="318" height="12" rx="3" fill="url(#s4bHc)"/>
+          <rect x="260" y="80" width="429" height="24" rx="5" fill="#7A3B69" stroke="#4E2343"/>
+          <rect x="260" y="116" width="266" height="12" rx="3" fill="url(#s4bHc)"/>
+          <rect x="260" y="132" width="362" height="24" rx="5" fill="#7A3B69" stroke="#4E2343"/>
+          <rect x="260" y="168" width="234" height="12" rx="3" fill="url(#s4bHc)"/>
+          <rect x="260" y="184" width="322" height="24" rx="5" fill="#2A7362" stroke="#1D5446"/>
+          <rect x="260" y="220" width="234" height="12" rx="3" fill="url(#s4bHc)"/>
+          <rect x="260" y="236" width="315" height="24" rx="5" fill="#7A3B69" stroke="#4E2343"/>
+          <path d="M603 54 L603 268" stroke="#4E2343" stroke-dasharray="5 4"/>
+        </g>
+
+        <text class="s4bA" x="603" y="48" text-anchor="middle">100% of focus hours</text>
+        <text class="s4bA" x="790" y="48" text-anchor="middle">deadlines missed</text>
+
+        <text class="s4bL" x="240" y="78" text-anchor="end">1 · book every hour</text>
+        <text class="s4bS" x="240" y="96" text-anchor="end">planned 92.8% by estimate</text>
+        <text class="s4bW" x="272" y="97">125.0% real</text>
+        <text class="s4bB" x="790" y="97" text-anchor="middle">31.8%</text>
+
+        <text class="s4bL" x="240" y="130" text-anchor="end">2 · plan to 85%</text>
+        <text class="s4bS" x="240" y="148" text-anchor="end">planned 77.7% by estimate</text>
+        <text class="s4bW" x="272" y="149">105.5% real</text>
+        <text class="s4bB" x="790" y="149" text-anchor="middle">8.6%</text>
+
+        <text class="s4bL" x="240" y="182" text-anchor="end">3 · plan to 70%</text>
+        <text class="s4bS" x="240" y="200" text-anchor="end">planned 68.3% by estimate</text>
+        <text class="s4bW" x="272" y="201">93.8% real</text>
+        <text class="s4bB" x="790" y="201" text-anchor="middle">3.3%</text>
+
+        <text class="s4bL" x="240" y="234" text-anchor="end">4 · 70% + focus block</text>
+        <text class="s4bS" x="240" y="252" text-anchor="end">planned 68.3% by estimate</text>
+        <text class="s4bW" x="272" y="253">91.9% real</text>
+        <text class="s4bB" x="790" y="253" text-anchor="middle">1.1%</text>
+
+        <text class="s4bN" x="30" y="294">Modelled, seed 20261010. Real load = true work + quick asks + resume overhead, over 240 focus hours.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the hatched bar is the plan, the solid bar is the week; the overrun and the interruptions live in the difference</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Why 70 percent is not idle<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>On rung 3 Dara plans 68.3 percent of focus hours by estimate and the week runs at 93.8 percent. Three things fill the difference: the accepted work turns out bigger than estimated, quick asks arrive whether planned or not, and every interruption costs a few minutes to get back into the task. None of that slack is spare time in the sense of nothing to do; it is the room the unplanned work needs.</p>
+        <p>The result is the one session 3 predicted: deadlines missed fall from 31.8 percent on rung 1 to 3.3 percent on rung 3, mean wait from 13.6 to 5.7 focus hours, and the backlog left at the end of week 8 from 33.6 hours to 3.8. Overtime falls from 32.8 hours to 4.1.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Two numbers at once: rungs 1 and 2 finish the same work<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Rung 1 takes on 110 asks; rung 2 takes on 105. Both finish 101 tasks inside the eight weeks. The five extra asks rung 1 accepts do not get done sooner; they sit in the queue and push everything behind them later. Rung 1 misses 31.8 percent of deadlines against 8.6, and works 32.8 hours of overtime against 4.9. Booking the last 15 percent bought nothing finished, only lateness.</p>
+        <p>This is the two-number read that matters on any plan: tasks finished and promises kept, side by side. A plan that looks fuller on Monday can finish the same amount by Friday with far more of it late.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What slack costs: 90 tasks against 101<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Rung 3 is not free. Dara hands back 36 asks instead of 18 and finishes 90 tasks inside the eight weeks instead of 101. Somebody else does that work, or it waits, or it is dropped. The model does not pretend otherwise. What rung 3 buys is that 89 of its 92 accepted tasks meet their date, so the people waiting on Dara can plan around her.</p>
+        <p>The focus block on rung 4 changes nothing about intake; it only batches the quick asks that arrive in the first three focus hours. Resume overhead falls from 16.8 hours to 12.2 over the eight weeks, a saving of 4.6 hours, and deadlines missed go from 3.3 to 1.1 percent: three late tasks become one. At a load in the nineties, a few hours matter more than they look, which is the queueing curve's whole point.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the anti-lever, the break and the curve</span>
+      <h2>Say yes, add one urgent job, and check the theory</h2>
+      <span class="tag concept">6 min live</span>
+    </div>
+    <p class="lede">The red buttons are there to make the bench report a worse number. If no input could make the week worse, the bench would be measuring nothing. Then the last chart on the widget sets the whole model beside Kingman's approximation from session 3, the queueing formula for how waiting grows with load.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Average wait in hours against load in percent. A purple line shows Kingman's approximation, rising slowly to about 13 hours at 86 percent and then steeply past 40 hours by 96 percent. Mint dots from a long simulation of the same task mix sit on the line up to 91 percent and slightly below it at 96 percent. Dashed markers show rung 4 at 91.9 percent and rung 3 at 93.8 percent. A note says rungs 1 and 2 run past 100 percent, off the chart.">
+        <defs>
+          <filter id="s4cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+        </defs>
+        <style>
+          .s4cH { font: 800 12px Inter, sans-serif; fill: #2A1C26; }
+          .s4cL { font: 600 12px Inter, sans-serif; fill: #2A1C26; }
+          .s4cS { font: 400 11px Inter, sans-serif; fill: #6B5A66; }
+          .s4cB { font: 800 11px Inter, sans-serif; fill: #1D5446; }
+          .s4cA { font: 700 11px Inter, sans-serif; fill: #7A3B69; }
+          .s4cN { font: 400 12px Inter, sans-serif; fill: #6B5A66; }
+        </style>
+
+        <text class="s4cH" x="30" y="26">WAITING GROWS SLOWLY, THEN EXPLODES: MODEL AGAINST THEORY</text>
+
+        <g filter="url(#s4cSk)" fill="none" stroke="#2A1C26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="90" y="40" width="730" height="240" rx="8" transform="rotate(-0.2 455 160)" fill="#FFFFFF"/>
+          <path d="M90.0 269.8 L119.2 269.0 L148.4 268.1 L177.6 267.1 L206.8 266.0 L236.0 264.7 L265.2 263.4 L294.4 261.9 L323.6 260.3 L352.8 258.4 L382.0 256.3 L411.2 253.8 L440.4 251.1 L469.6 247.8 L498.8 243.9 L528.0 239.3 L557.2 233.7 L586.4 226.6 L615.6 217.5 L624.4 214.3 L633.1 210.7 L641.9 206.8 L650.6 202.5 L659.4 197.7 L668.2 192.4 L676.9 186.4 L685.7 179.6 L694.4 171.9 L703.2 163.0 L712.0 152.7 L720.7 140.6 L729.5 126.1 L738.2 108.6 L747.0 86.8 L755.8 59.0" stroke="#7A3B69" stroke-width="2.4"/>
+          <path d="M701.7 44 L701.7 276" stroke="#4E2343" stroke-dasharray="5 4" stroke-width="1.6"/>
+          <path d="M729.5 44 L729.5 276" stroke="#2A7362" stroke-dasharray="5 4" stroke-width="1.6"/>
+        </g>
+        <circle cx="101.7" cy="269.4" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+        <circle cx="244.8" cy="264.2" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+        <circle cx="390.8" cy="254.6" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+        <circle cx="463.8" cy="248.3" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+        <circle cx="536.8" cy="237.3" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+        <circle cx="611.2" cy="217.6" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+        <circle cx="693.0" cy="172.0" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+        <circle cx="755.8" cy="81.3" r="4.5" fill="#2A7362" stroke="#FFFFFF" stroke-width="1.2"/>
+
+        <text class="s4cL" x="104" y="62">Rungs 1 and 2 run past 100% (125.0% and 105.5%):</text>
+        <text class="s4cS" x="104" y="78">no steady state, the queue grows without limit, off this chart</text>
+        <text class="s4cS" x="104" y="108">line: Kingman (1961) approximation</text>
+        <text class="s4cB" x="104" y="124">dots: the same task mix, 100,000 tasks</text>
+        <text class="s4cA" x="695" y="266" text-anchor="end">rung 4: 91.9%</text>
+        <text class="s4cB" x="736" y="266">rung 3: 93.8%</text>
+
+        <text class="s4cS" x="82" y="274" text-anchor="end">0</text>
+        <text class="s4cS" x="82" y="184" text-anchor="end">20</text>
+        <text class="s4cS" x="82" y="88" text-anchor="end">40</text>
+        <text class="s4cS" x="90" y="298" text-anchor="middle">50%</text>
+        <text class="s4cS" x="236" y="298" text-anchor="middle">60%</text>
+        <text class="s4cS" x="382" y="298" text-anchor="middle">70%</text>
+        <text class="s4cS" x="528" y="298" text-anchor="middle">80%</text>
+        <text class="s4cS" x="674" y="298" text-anchor="middle">90%</text>
+        <text class="s4cS" x="820" y="298" text-anchor="middle">100%</text>
+        <text class="s4cA" x="455" y="318" text-anchor="middle">LOAD: true work ÷ focus hours</text>
+        <text class="s4cA" x="40" y="250" transform="rotate(-90 40 250)">HOURS WAITING</text>
+
+        <text class="s4cN" x="30" y="344">Model and theory within 0.4 h up to 91% load; at 96%, 41.4 h against 46.4 h, where Kingman is an upper bound.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - rungs 3 and 4 live on the steep part of the curve, which is why a 4.6-hour saving shows up as fewer late tasks</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The anti-lever: say yes to every ask<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The obvious fix for a team that keeps asking is to take everything. Turn the first red button on with rung 4 selected and the intake cap disappears: all 128 asks are accepted, 112.5 percent of focus hours by estimate. Real load goes to 145.8 percent, mean wait from 5.4 to 22.4 focus hours, deadlines missed from 1.1 to 42.2 percent, overtime from 2.3 to 38.6 hours, and 78.3 hours of accepted work are still waiting at the end of week 8. With no cap, rungs 1 to 3 become the same week, because the cap was the only thing that made them different.</p>
+        <p>The honest nuance, printed on the widget too: saying yes does finish more inside the eight weeks, 107 tasks against 90 on rung 4, by working 38.6 hours of overtime. The extra output is real, and so is the fact that 42.2 percent of everything Dara promised is late. That is the trade, in two numbers.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The break: one urgent interrupt a day<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The second red button adds a 30 to 60 minute urgent job at a seeded minute every day and lets it jump every queue, focus block included. On rung 1 deadlines missed rise from 31.8 to 55.5 percent and overtime to 50.3 hours. On rung 4 they rise from 1.1 to 7.6 percent and overtime to 8.1 hours. Both rungs feel the same interruption; only one of them had room for it.</p>
+        <p>With both red buttons on rung 4, deadlines missed reach 70.3 percent. The break is the bench's proof that it measures something: put load in, and the numbers move the way session 3 said they would.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>How far the model agrees with Kingman, and where it does not<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The right-hand chart runs a plain first-come-first-served queue with exactly Dara's task mix, 100,000 tasks at each of eight loads, and plots the average wait before work starts. Kingman's approximation, read in Technion lecture notes that credit his 1961 paper, predicts that wait from three numbers: the load, the variability of arrivals and of task times, and the average task time (2.2 hours here). The two agree within 0.4 hours up to 91 percent load: 13.0 hours against 12.7 at 85.7 percent, 22.5 against 22.1 at 91.3 percent. At 95.6 percent the model waits 41.4 hours and Kingman says 46.4; the lecture notes describe the formula as an upper bound in general and exact only in heavy traffic, which is consistent with that gap.</p>
+        <p>One difference you should notice: at the same load, the eight-week bench shows much shorter waits than the curve. Rung 3 runs at 93.8 percent and waits 5.7 hours on average, where the curve says tens of hours. The bench starts from an empty desk and stops after eight weeks, and its deadline ordering serves short, urgent work first; the curve is the long run. A busy month that feels fine is often a queue that has not caught up with its load yet.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before session 5</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find your planned share.</strong> Add up the estimates on next week's plan and divide by your focus hours. Write the number down next to rung 1's 92.8 percent and rung 3's 68.3 percent.</li>
+      <li><strong>Count your quick asks.</strong> For two days, tally every interruption that pulled you off a planned task. Session 5 starts from that count.</li>
+      <li><strong>Run the slider.</strong> On rung 3, move the resume overhead from 0 to 20 minutes and note how the mean wait moves. Write one sentence on what that says about protecting a block.</li>
+      <li><strong>Name your break.</strong> What is your one urgent job a day? Write down where it comes from and whether your plan has room for it.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and session 4 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · On rung 3 Dara plans 68.3 percent of focus hours by estimate. Why does the modelled week run at 93.8 percent?</p>
+      <button class="qopt" type="button">A · The model double-counts meetings</button>
+      <button class="qopt" type="button">B · Accepted work runs over its estimates, quick asks arrive anyway, and each interruption costs minutes to get back into the task</button>
+      <button class="qopt" type="button">C · Dara works slower on rung 3</button>
+      <button class="qopt" type="button">D · Rung 3 accepts more asks than rung 1</button>
+      <p class="qwhy">The plan is made on estimates; the week runs on true time plus unplanned work. Rung 3 accepts fewer asks (92 against 110), and Dara's speed is the same on every rung. The slack is where the overrun and the interruptions go.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">2 · Rung 1 accepts 110 asks and rung 2 accepts 105. What does the bench show about the difference?</p>
+      <button class="qopt" type="button">A · Rung 1 finishes five more tasks inside the eight weeks</button>
+      <button class="qopt" type="button">B · The two rungs are identical</button>
+      <button class="qopt" type="button">C · Rung 2 misses more deadlines because it hands back more asks</button>
+      <button class="qopt" type="button">D · Both finish 101 tasks in eight weeks, but rung 1 misses 31.8 percent of deadlines against 8.6 and works far more overtime</button>
+      <p class="qwhy">Above full load, extra asks do not get done sooner; they queue and push everything later. Read tasks finished and deadlines kept side by side and the last 15 percent of booking buys only lateness.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · The eight-week bench waits far less than Kingman's curve at the same load. Which explanation fits?</p>
+      <button class="qopt" type="button">A · The bench starts from an empty desk and stops after eight weeks, and serves the earliest deadline first; the curve describes the long run of a plain queue</button>
+      <button class="qopt" type="button">B · Kingman's approximation is wrong for this task mix</button>
+      <button class="qopt" type="button">C · The bench ignores interruptions</button>
+      <button class="qopt" type="button">D · Dara works overtime every day on every rung</button>
+      <p class="qwhy">On the long-run plain queue the model and Kingman agree within 0.4 hours up to 91 percent load. The bench is a short, deadline-ordered stretch that has not reached steady state, which is also why a busy month can feel fine before the queue catches up.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Kingman (1961) heavy-traffic approximation</span><span class="note">The G/G/1 wait formula, read in Mandelbaum's Technion lecture notes, "The G/G/1 Queue", which credit Kingman and call it an upper bound in general; the 1961 paper itself was not read</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Buehler, Griffin and Ross (1994), Study 1</span><span class="note">29.7 percent finished by their best estimate, read in the paper; used to set the overrun table's share at or under estimate</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The calendar bench</span><span class="note">Modelled: a seeded queue of Dara's constructed work; the resume overhead is an assumption, not a measured value; Python and browser agree on every default number</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Dara and every Dara number</span><span class="note">Constructed for teaching; no number about Dara is a measurement</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Session 4 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Plan on estimates, live on true time</b><span>The gap between the two is overrun plus interruptions. Slack is where it goes.</span></div>
+      <div class="cheat-item"><b>70 became 93.8</b><span>A 68.3 percent plan by estimate ran at a 93.8 percent real load.</span></div>
+      <div class="cheat-item"><b>Two numbers</b><span>Tasks finished and deadlines kept. Rungs 1 and 2 finish 101 each; one misses 31.8 percent.</span></div>
+      <div class="cheat-item"><b>Saying yes</b><span>More finished (107 against 90), 42.2 percent late, 38.6 hours of overtime.</span></div>
+      <div class="cheat-item"><b>One urgent a day</b><span>Rung 4 goes from 1.1 to 7.6 percent late; rung 1 from 31.8 to 55.5.</span></div>
+      <div class="cheat-item"><b>The curve</b><span>Waiting grows slowly, then explodes. Near 90 percent, every hour of load matters.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The focus block saved 4.6 hours of getting back into interrupted work, and the slider showed the bench is sensitive to that overhead. Session 5 asks what interruptions really cost: what the switching studies measured, where "40 percent" and "23 minutes" come from, and why interrupted people work faster and feel worse.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Session 4 of 6 · learn-time-management-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="03-slack-is-not-waste.html">← Prev: Slack is not waste</a> &nbsp;·&nbsp; <a href="05-interruptions-and-switching.html">Next: Interruptions and the cost of switching →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/tm-live.js?v=15"></script>
+<script src="../assets/app.js?v=15"></script>
+</body>
+</html>
