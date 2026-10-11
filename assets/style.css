@@ -1369,3 +1369,4 @@ figure.zoomable.can-scroll figcaption::after {
 .masthead a, .masthead .sub a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
 .prompt-box b, .prompt-box strong { color: var(--indigo-deep, var(--ink)); }
 .prompt-box span, .prompt-box em, .prompt-box i { color: inherit; }
+.pp-stamp i { color: var(--ink); }
